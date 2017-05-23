@@ -28,10 +28,3 @@ def query_database(q):
     conn.close()
 
     return results
-
-
-# code for testing
-
-print(query_database(QUERY1))
-print(query_database(QUERY2))
-print(query_database(QUERY3))
