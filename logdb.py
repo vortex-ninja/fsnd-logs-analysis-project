@@ -8,6 +8,13 @@ QUERY1 = """select title, count(articles.id) as num
                  order by num desc
                  limit 3;"""
 
+QUERY2 = "select name, s from authors, authors_pop where author=id;"
+
+QUERY3 = """select requests_not_ok_404.date, (not_ok::float/all_requests::float)
+          from requests_not_ok_404, requests_all
+          where requests_not_ok_404.date=requests_all.date
+          and (not_ok::float/all_requests::float)>=0.01;"""
+
 
 def query_database(q):
     """Returns results for a given database query"""
@@ -24,3 +31,5 @@ def query_database(q):
 # code for testing
 
 print(query_database(QUERY1))
+print(query_database(QUERY2))
+print(query_database(QUERY3))
