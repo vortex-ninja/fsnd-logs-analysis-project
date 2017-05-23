@@ -15,6 +15,8 @@ QUERY3 = """select requests_not_ok_404.date, (not_ok::float/all_requests::float)
           where requests_not_ok_404.date=requests_all.date
           and (not_ok::float/all_requests::float)>=0.01;"""
 
+QUERIES = [QUERY1, QUERY2, QUERY3]
+
 
 def query_database(q):
     """Returns results for a given database query"""
