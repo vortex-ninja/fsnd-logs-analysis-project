@@ -14,7 +14,7 @@ def query_database(q):
 
     conn = psycopg2.connect('dbname=news')
     cur = conn.cursor()
-    cur.execute(QUERY1)
+    cur.execute(q)
     results = cur.fetchall()
     conn.close()
 
