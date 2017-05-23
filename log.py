@@ -17,4 +17,14 @@ def most_popular_authors():
         print(' * {} -- {} views'.format(author, views))
 
 
+def error_dates():
+
+    results = query_database(QUERIES[2])
+    print('\nOn which days did more than 1% of requests lead to errors?\n')
+    for date, rate in results:
+        print(' * {} -- {:.2%}'.format(date, rate))
+
+
+most_popular_articles()
 most_popular_authors()
+error_dates()
