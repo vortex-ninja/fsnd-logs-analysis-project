@@ -1,19 +1,19 @@
 import psycopg2
 
-QUERY1 = """select title, count(articles.id) as num
-                 from log, articles
-                 where path = ('/article/' || articles.slug)
-                 and status ='200 OK'
-                 group by articles.id
-                 order by num desc
-                 limit 3;"""
 
-QUERY2 = "select name, s from authors, authors_pop where author=id;"
+QUERY1 = "SELECT title, views FROM articles_views ORDER BY views DESC LIMIT 3;"
 
-QUERY3 = """select requests_not_ok_404.date, (not_ok::float/all_requests::float)
-          from requests_not_ok_404, requests_all
-          where requests_not_ok_404.date=requests_all.date
-          and (not_ok::float/all_requests::float)>=0.01;"""
+QUERY2 = """SELECT name, sum(views) AS sum
+            FROM authors, articles_views, articles
+            WHERE articles.author=authors.id
+            AND articles.id=articles_views.id
+            GROUP BY authors.id
+            ORDER BY sum DESC;"""
+
+QUERY3 = """SELECT error_requests.date, (errors::float/requests::float)
+            FROM error_requests, all_requests
+            WHERE error_requests.date=all_requests.date
+            AND (errors::float/requests::float)>=0.01;"""
 
 QUERIES = [QUERY1, QUERY2, QUERY3]
 
