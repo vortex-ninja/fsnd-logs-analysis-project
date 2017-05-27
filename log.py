@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from logdb import QUERIES, query_database
 
 
